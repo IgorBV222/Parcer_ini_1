@@ -24,38 +24,21 @@
     return 0;
 }*/
 
-int main() {
-
-    /*std::shared_ptr <IParcer> parser = std::make_shared<Parcer_ini>();
-
+int main() {    
     short answer;
-    std::string key, section, value, pathFile;
-
-
-    std::cout << "\nEnter the path to the file -> ";
-   // std::cin.ignore();
-    getline(std::cin, pathFile);
-    system("cls");
-    parser->IReaderFile(pathFile);
-    parser->showParcer();*/
-    short answer;
-
     do {
-
-        std::shared_ptr <IParcer> parser = std::make_shared<Parcer_ini>();
-
-       
+        std::shared_ptr <IParcer> parser = std::make_shared<Parcer_ini>();       
         std::string key, section, value, pathFile;
-
-        std::cout << "\nEnter the path to the file -> ";
-        // std::cin.ignore();
-        getline(std::cin, pathFile);
-        system("cls");
-        parser->IReaderFile(pathFile);
-        parser->showParcer();
-
         std::cout << "\t\t\t   File Parser\n\t\t\t*****************\n\n";
-        std::cout << "__________________________________________ \n";
+        std::cout << "Enter the path to the file -> ";
+        getline(std::cin, pathFile);
+        parser->IReaderFile(pathFile);
+        system("cls");
+        std::cout << "File data:\n\n";
+        parser->showParcer();
+        std::cout << "\n";
+        system("pause");
+        system("cls");
         std::cout << "What do you want to do?\n";
         std::cout << "1.Find in which section the key is located.\n";
         std::cout << "2.Check header existence.\n";
@@ -65,17 +48,13 @@ int main() {
         std::cout << "6.Replace key value.\n";
         std::cout << "7.Save data to file.\n";
         std::cout << "0.To finish work.\n";
-        std::cout << "___________________________________________\n";
         std::cout << "\nEnter -> ";
         std::cin >> answer;
-        //} while (answer != 0 && answer != 1 && answer != 2 && answer != 3 && answer != 4 && answer != 5 && answer != 6 && answer != 7);
-
         system("cls");
         switch (answer) {
-
         case 0:
         {
-            std::cout << "\n\nThank you for using the app" << '"' << "File Parser" << '"' << "\n\Exiting the program..." << '\n';
+            std::cout << "\nThank you for using the app" << '"' << "File Parser" << '"' << "\n\Exiting the program..." << '\n';
         }
         break;
 
@@ -106,9 +85,9 @@ int main() {
             std::cin.ignore();
             std::cout << "Enter key -> ";
             getline(std::cin, key);
-           // system("cls");
+            system("cls");
             parser->keyInFile(key);
-           // system("pause");
+            system("pause");
             main();
             break;
         }
@@ -148,6 +127,15 @@ int main() {
             system("cls");
             parser->keyValueReplacement(section, key, value);
             system("pause");
+            system("cls");
+            std::cout << "Updated data:\n";
+            parser->showParcer();
+            system("pause");
+            system("cls");
+            std::cout << "Enter the path to the file to write the updated data -> ";
+            getline(std::cin, pathFile);
+            system("cls");
+            parser->writeToFile(pathFile);
             main();
             break;
         }
@@ -162,40 +150,6 @@ int main() {
             break;
         }
         } break;
-
-
     } while (answer != 0 && answer != 1 && answer != 2 && answer != 3 && answer != 4 && answer != 5 && answer != 6 && answer != 7);
     return 0;
 }
-
-
-
-/*
-std::map <std::string, std::map < std::string, std::string>> sections;
-section["sectionName"]["keyName"] = "value";
-
-auto it = sections.find(sectionName);
-auto keyValueIT = it->second.find("keyName");
-std::cout << keyValueIT->first;
-
-for (const auto& section : _section) {
-    std::cout << "[" << section.first << "]" << std::endl; 
-    for (const auto& element : section) {
-        std::cout << "key: " << element.first << " " << "value: " << element.second << std::endl;
-    }
-}
-
-
-
-
-std::string currenLine;
-char c = "/";
-std::string sectionName;
-while (c != " ") {
-    std::getline(fin, currenLine);
-    sectionName = parseSection(currenLine);
-    if (sectionName != 0)
-
-
-
-}*/
